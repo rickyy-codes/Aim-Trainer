@@ -1,19 +1,21 @@
 gameContainer = document.getElementById("game-container");
+gameRect = gameContainer.getBoundingClientRect();
+
 scoreDisplay = document.getElementById("score");
 timerDisplay = document.getElementById("time");
-timeSetters = Array.from(document.getElementsByClassName("timeSetters"));
 
-gameRect = gameContainer.getBoundingClientRect();
+timeSetters = Array.from(document.getElementsByClassName("timeSetters"));
+timeSetters[1].classList.add("active");
 
 const target = document.createElement("img");
 target.src = "Graphics/target.png";
-target.style.width = "176px";
+target.style.width = "96px";
 target.style.position = "absolute";
 target.style.display = "none";
 gameContainer.appendChild(target);
 
 let score = 0;
-let timeLimit = 5; // seconds
+let timeLimit = 10; // seconds
 let running = false;
 let active = true;
 
@@ -60,7 +62,7 @@ target.addEventListener("click", () => {
 
 function displayResults() {
   setTimeout(() => {
-    gameContainer.innerHTML += `<br>Click Here To Play Again`;
+    gameContainer.innerHTML += `<br>Click To Play Again`;
     active = true;
   }, 3000);
 

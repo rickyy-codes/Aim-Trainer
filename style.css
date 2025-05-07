@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 65px;
+  font-size: 40px;
   font-weight: bold;
   text-shadow: 0 0 10px hsl(0, 0%, 100%, 0.5);
 }
@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  gap: 50px;
+  gap: 30px;
   background: linear-gradient(to right, hsl(0, 0%, 15%), hsl(0, 0%, 25%));
 }
 
@@ -39,7 +39,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  font-size: 50px;
+  font-size: 25px;
   font-style: italic;
 }
 
@@ -49,34 +49,34 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  gap: 20px;
+  gap: 10px;
 }
 
 .timeSetters {
-  width: 280px;
-  font-size: 45px;
+  width: 150px;
+  font-size: 22.5px;
   color: white;
   background-color: hsl(0, 0%, 20%);
-  border: 5px solid hsl(0, 0%, 50%);
-  padding: 10px 20px;
-  border-radius: 20px;
+  border: 2px solid hsl(0, 0%, 50%);
+  padding: 5px;
+  border-radius: 15px;
   cursor: pointer;
   transition: ease-in-out 0.2s;
 }
 
 .timeSetters:hover {
   background-color: hsl(0, 0%, 30%);
-  border: 5px solid hsl(0, 0%, 100%);
+  border: 2px solid hsl(0, 0%, 100%);
 }
 
 .timeSetters.active {
-  border: 5px solid hsl(0, 0%, 100%);
+  border: 2px solid hsl(0, 0%, 100%);
 }
 
 #game-container {
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 0px 150px 150px 150px;
+  margin: 0px 100px 100px 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,7 +84,7 @@ body {
   text-align: center;
   background-color: hsl(0, 0%, 18.5%);
   border-radius: 40px;
-  font-size: 50px;
+  font-size: 25px;
   font-style: normal;
   font-weight: normal;
   position: relative;
@@ -95,5 +95,5 @@ body {
 #game-container.results {
   font-style: italic;
   font-weight: bold;
-  font-size: 65px;
+  font-size: 40px;
 }
