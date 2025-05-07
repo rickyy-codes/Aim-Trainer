@@ -5,48 +5,95 @@ body {
   background-color: hsl(0, 0%, 25%);
   color: hsl(0, 0%, 100%);
   font-family: "roboto";
-  font-size: 25px;
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 1fr 10fr;
+  cursor: default;
 }
 
 #header {
-  grid-column: 1/3;
+  grid-column: 1/4;
   grid-row: 1/2;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 65px;
   font-weight: bold;
   text-shadow: 0 0 10px hsl(0, 0%, 100%, 0.5);
 }
 
-#stats-container {
+#info-container {
   grid-column: 1/2;
   grid-row: 1/3;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  gap: 10px;
+  gap: 50px;
   background: linear-gradient(to right, hsl(0, 0%, 15%), hsl(0, 0%, 25%));
 }
 
-.stats {
-  font-size: 32px;
+#stats-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  font-size: 50px;
   font-style: italic;
+}
+
+#time-setter-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 20px;
+}
+
+.timeSetters {
+  width: 280px;
+  font-size: 45px;
+  color: white;
+  background-color: hsl(0, 0%, 20%);
+  border: 5px solid hsl(0, 0%, 50%);
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+.timeSetters:hover {
+  background-color: hsl(0, 0%, 30%);
+  border: 5px solid hsl(0, 0%, 100%);
+}
+
+.timeSetters.active {
+  border: 5px solid hsl(0, 0%, 100%);
 }
 
 #game-container {
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 0px 50px 50px 50px;
+  margin: 0px 150px 150px 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: hsl(0, 0%, 18.5%);
-  border-radius: 25px;
-  font-size: 35px;
+  border-radius: 40px;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: normal;
+  position: relative;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  cursor: pointer;
+}
+
+#game-container.results {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 65px;
 }

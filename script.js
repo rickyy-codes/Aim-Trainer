@@ -1,23 +1,39 @@
 gameContainer = document.getElementById("game-container");
 scoreDisplay = document.getElementById("score");
-timeDisplay = document.getElementById("time");
+timerDisplay = document.getElementById("time");
+timeSetters = Array.from(document.getElementsByClassName("timeSetters"));
 
 gameRect = gameContainer.getBoundingClientRect();
+
+const target = document.createElement("img");
+target.src = "Graphics/target.png";
+target.style.width = "176px";
+target.style.position = "absolute";
+target.style.display = "none";
+gameContainer.appendChild(target);
 
 let score = 0;
 let timeLimit = 5; // seconds
 let running = false;
+let active = true;
 
 gameContainer.addEventListener("click", () => {
   if (running) return;
-  running = true;
+  if (!active) return;
 
-  gameContainer.innerHTML = "";
+  running = true;
+  score = 0;
+  target.style.display = "block";
+  gameContainer.replaceChildren(target);
+  gameContainer.classList.remove("results");
+
   let timeLeft = timeLimit;
   let timer = setInterval(() => {
     if (timeLeft <= 0) {
-      running = false;
       clearInterval(timer);
+      running = false;
+      active = false;
+      displayResults();
       return;
     }
     timeLeft--;
@@ -25,20 +41,45 @@ gameContainer.addEventListener("click", () => {
   }, 1000);
 });
 
-function spawnTarget() {
-  const img = document.createElement("img");
-  img.src = "Graphics/target.png";
-  img.style.width = "96px";
+function getRandomPositions() {
+  const x = Math.floor(Math.random() * (gameRect.width - 8 * target.width) + 3 * target.width);
+  const y = Math.floor(Math.random() * (gameRect.height - 7 * target.height) + 2 * target.height);
 
-  x = Math.floor(Math.random() * (gameRect.right - 96) + (gameRect.left + 96));
-  y = Math.floor(Math.random() * (gameRect.bottom - 96) + (gameRect.top + 96));
-  console.log(x, y);
-
-  img.style.position = "absolute";
-  img.style.left = x + "px";
-  img.style.top = y + "px";
-
-  gameContainer.appendChild(img);
+  return [x, y];
 }
 
-spawnTarget();
+target.addEventListener("click", () => {
+  if (!running) return;
+
+  let [x, y] = getRandomPositions();
+  target.style.left = `${x}px`;
+  target.style.top = `${y}px`;
+  score++;
+  scoreDisplay.innerHTML = `Score: ${score}`;
+});
+
+function displayResults() {
+  setTimeout(() => {
+    gameContainer.innerHTML += `<br>Click Here To Play Again`;
+    active = true;
+  }, 3000);
+
+  target.style.display = "none";
+  if (score === 0) gameContainer.innerHTML = "You Didn't Get Any Hits!";
+  else gameContainer.innerHTML = `${Math.round((timeLimit / score) * 1000)} Miliseconds Per Hit!`;
+
+  gameContainer.classList.add("results");
+}
+
+timeSetters.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (running) return;
+
+    timeLimit = parseInt(button.innerHTML.split(" ")[0]);
+    timerDisplay.innerHTML = `Timer: ${timeLimit}`;
+    timeSetters.forEach((other) => {
+      other.classList.remove("active");
+    });
+    button.classList.add("active");
+  });
+});
