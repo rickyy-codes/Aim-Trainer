@@ -58,7 +58,7 @@ target.addEventListener("click", () => {
 
 function displayResults() {
   setTimeout(() => {
-    gameLabel.innerHTML += `<br>CLICK TO RESTART!`;
+    gameLabel.innerHTML += `<br>CLICK AGAIN TO RESTART!`;
     active = true;
   }, 3000);
 
