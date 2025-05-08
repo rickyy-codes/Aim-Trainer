@@ -9,6 +9,7 @@ body {
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 1fr 10fr;
   cursor: default;
+  user-select: none;
 }
 
 #header {
