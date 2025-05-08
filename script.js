@@ -1,18 +1,14 @@
-gameContainer = document.getElementById("game-container");
-gameRect = gameContainer.getBoundingClientRect();
+const gameContainer = document.getElementById("game-container");
+const gameRect = gameContainer.getBoundingClientRect();
 
-scoreDisplay = document.getElementById("score");
-timerDisplay = document.getElementById("time");
+const scoreDisplay = document.getElementById("score");
+const timerDisplay = document.getElementById("time");
 
-timeSetters = Array.from(document.getElementsByClassName("timeSetters"));
+const timeSetters = Array.from(document.getElementsByClassName("timeSetters"));
 timeSetters[1].classList.add("active");
 
-const target = document.createElement("img");
-target.src = "Graphics/target.png";
-target.style.width = "96px";
-target.style.position = "absolute";
-target.style.display = "none";
-gameContainer.appendChild(target);
+const target = document.getElementById("target");
+const gameLabel = document.getElementById("game-label");
 
 let score = 0;
 let timeLimit = 10; // seconds
@@ -26,7 +22,7 @@ gameContainer.addEventListener("click", () => {
   running = true;
   score = 0;
   target.style.display = "block";
-  gameContainer.replaceChildren(target);
+  gameLabel.style.display = "none";
   gameContainer.classList.remove("results");
 
   let timeLeft = timeLimit;
@@ -62,15 +58,16 @@ target.addEventListener("click", () => {
 
 function displayResults() {
   setTimeout(() => {
-    gameContainer.innerHTML += `<br>Click To Play Again`;
+    gameLabel.innerHTML += `<br>CLICK TO RESTART!`;
     active = true;
   }, 3000);
 
   target.style.display = "none";
-  if (score === 0) gameContainer.innerHTML = "You Didn't Get Any Hits!";
-  else gameContainer.innerHTML = `${Math.round((timeLimit / score) * 1000)} Miliseconds Per Hit!`;
+  gameLabel.style.display = "block";
+  if (score === 0) gameLabel.innerHTML = "You Didn't Get Any Hits!";
+  else gameLabel.innerHTML = `${Math.round((timeLimit / score) * 1000)} Miliseconds Per Hit!`;
 
-  gameContainer.classList.add("results");
+  gameLabel.classList.add("results");
 }
 
 timeSetters.forEach((button) => {

@@ -82,19 +82,28 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   background-color: hsl(0, 0%, 18.5%);
   border-radius: 40px;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: normal;
   position: relative;
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
   cursor: pointer;
 }
 
-#game-container.results {
+#game-label {
+  font-size: 25px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+}
+
+#game-label.results {
   font-style: italic;
   font-weight: bold;
   font-size: 40px;
+}
+
+#target {
+  display: none;
+  width: 96px;
+  position: absolute;
+  transition: ease-in-out 0.05s;
 }
